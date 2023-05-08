@@ -2,4 +2,4 @@
 
 number = 98
 
-print(f"{98} Battery street \n")
+print("{} Battery street \n".format(number))
