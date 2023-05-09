@@ -14,3 +14,4 @@ if number != 0 and last_digit != 0:
             print(f"Last digit of {number:d} is {last_digit:d} {type_tow}")
 else:
     print(f"Last digit of {number:d} is {last_digit:d} and is {last_digit}")
+print("\n")
