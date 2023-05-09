@@ -1,10 +1,8 @@
 #!/usr/bin/python3
-str_print = ""
-for i in range(0, 100):
-    if i < 10:
-        str_print = str_print + "0{:d}".format(i)
+start_i = 0
+max_i = 100
+for i in range(start_i, max_i):
+    if i == max_i - 1:
+        print("{}".format(i))
     else:
-        str_print = str_print + "{:d}".format(i)
-    if i != 99:
-        str_print = str_print + ", "
-print(str_print)
+        print("{:02}".format(i), end=", ")
