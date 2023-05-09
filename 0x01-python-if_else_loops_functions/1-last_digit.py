@@ -11,4 +11,4 @@ if number != 0 and last_digit != 0:
         else:
             print(f"Last digit of {number} is {last_digit} and is greater than 5")
 else:
-    print(f"Last digit of {number} is {last_digit}")
+    print(f"Last digit of {number} is {last_digit} and is {last_digit}")
