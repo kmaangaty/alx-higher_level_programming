@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+stri = ""
 for start in range(97, 97+26):
     to_print = "{}".format(chr(start))
-    print(to_print)
+    stri = stri + to_print
+print(stri)
