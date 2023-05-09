@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 for start in range(97, 97+26):
-    print(chr(start))
+    print(f"{chr(start)}")
