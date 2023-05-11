@@ -5,6 +5,8 @@ if __name__ == "__main__":
     if args_count == 0:
         print("{} arguments.".format(args_count))
     elif args_count == 1:
-        print("{} argument.".format(args_count))
+        print("{} argument:".format(args_count))
     elif args_count > 1:
-        print("{} arguments.".format(args_count))
+        print("{} arguments:".format(args_count))
+    for pos in range(args_count):
+        print("{}: {}".format(pos + 1, sys.argv[pos + 1]))
