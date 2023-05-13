@@ -2,7 +2,7 @@
 def element_at(my_list, idx):
     mlr = len(my_list) - 1
     if idx > mlr:
-        return
+        return None
     if idx < 0:
-        return
+        return None
     return "Element at index {:d} is {}".format(idx, mylist[idx])
