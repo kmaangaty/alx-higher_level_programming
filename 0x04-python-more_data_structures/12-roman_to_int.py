@@ -18,7 +18,7 @@ def roman_to_int(roman_string):
             return (0)
         if (i != (len(roman_string) - 1) and
                 rd[roman_string[i]] < rd[roman_string[i + 1]]):
-                rkm += rd[roman_string[i]] * -1
+            rkm += rd[roman_string[i]] * -1
         else:
             rkm += rd[roman_string[i]]
     return (rkm)
