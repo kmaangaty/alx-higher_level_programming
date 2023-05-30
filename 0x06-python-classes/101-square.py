@@ -1,11 +1,21 @@
 #!/usr/bin/python3
+""" Square class Define"""
+
+
 class Square:
+    """Square represented"""
     def __init__(self, size=0, position=(0, 0)):
+        """Initialize a new class.
+        Args:
+            size (int): parameter of type int.
+            position (int): parameter of type int.
+        """
         self.size = size
         self.position = position
 
     @property
     def size(self):
+        """getter or setter"""
         return (self.__size)
 
     @size.setter
@@ -18,6 +28,7 @@ class Square:
 
     @property
     def position(self):
+        """getter or setter"""
         return (self.__position)
 
     @position.setter
@@ -30,25 +41,28 @@ class Square:
         self.__position = value
 
     def area(self):
+        """Return calc value."""
         return (self.__size * self.__size)
 
     def my_print(self):
+        """print calc value."""
         if self.__size == 0:
             print("")
             return
 
-        [print("") for x in range(0, self.__position[1])]
+        [print("") for z in range(0, self.__position[1])]
         for i in range(0, self.__size):
             [print(" ", end="") for a in range(0, self.__position[0])]
             [print("#", end="") for b in range(0, self.__size)]
             print("")
 
     def __str__(self):
+        """stringify."""
         if self.__size != 0:
-            [print("") for t in range(0, self.__position[1])]
+            [print("") for z in range(0, self.__position[1])]
         for t in range(0, self.__size):
-            [print(" ", end="") for j in range(0, self.__position[0])]
-            [print("#", end="") for k in range(0, self.__size)]
+            [print(" ", end="") for a in range(0, self.__position[0])]
+            [print("#", end="") for b in range(0, self.__size)]
             if t != self.__size - 1:
                 print("")
         return ("")
