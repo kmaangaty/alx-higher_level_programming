@@ -3,7 +3,14 @@
 
 
 class Rectangle:
-    """this is representation of Rectangle class"""
+    """this is representation of Rectangle class.
+    Attributes:
+        number_of_instances (int): attribute of type int define num of object.
+        print_symbol (any): attribute of type any.
+    """
+
+    number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """Init a new object.
@@ -11,6 +18,7 @@ class Rectangle:
             height (int): parameter of type int.
             width (int): parameter of type int.
         """
+        type(self).number_of_instances += 1
         self.height = height
         self.width = width
 
@@ -49,3 +57,26 @@ class Rectangle:
         if self.__width == 0 or self.__height == 0:
             return 0
         return (self.__width * 2) + (self.__height * 2)
+
+    def __repr__(self):
+        """Return representation of the Rectangle."""
+        shk = "Rectangle(" + str(self.__width)
+        shk += ", " + str(self.__height) + ")"
+        return shk
+
+    def __del__(self):
+        """Print a message "Bye rectangle..." for any object deletion"""
+        type(self).number_of_instances -= 1
+        print("Bye rectangle...")
+
+    def __str__(self):
+        """Return the printable representation"""
+        if self.__width == 0 or self.__height == 0:
+            return ""
+
+        ash = []
+        for z in range(self.__height):
+            [ash.append(str(self.print_symbol)) for x in range(self.__width)]
+            if z != self.__height - 1:
+                ash.append("\n")
+        return "".join(ash)

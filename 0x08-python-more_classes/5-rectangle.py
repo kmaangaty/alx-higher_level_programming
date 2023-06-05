@@ -7,7 +7,6 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """Init a new object.
-
         Args:
             height (int): parameter of type int.
             width (int): parameter of type int.
@@ -40,3 +39,35 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
+    def area(self):
+        """Return the calculated value for field area in object."""
+        return self.__width * self.__height
+
+    def perimeter(self):
+        """Return the calculated value for field perimeter in object."""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return (self.__width * 2) + (self.__height * 2)
+
+    def __repr__(self):
+        """Return representation of the Rectangle."""
+        shk = "Rectangle(" + str(self.__width)
+        shk += ", " + str(self.__height) + ")"
+        return shk
+
+    def __del__(self):
+        """Print a message "Bye rectangle..." for any object deletion"""
+        print("Bye rectangle...")
+
+    def __str__(self):
+        """Return the printable representation"""
+        if self.__width == 0 or self.__height == 0:
+            return ""
+
+        ash = []
+        for z in range(self.__height):
+            [ash.append('#') for x in range(self.__width)]
+            if z != self.__height - 1:
+                ash.append("\n")
+        return "".join(ash)
