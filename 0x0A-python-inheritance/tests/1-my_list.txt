@@ -32,10 +32,11 @@ Test for 1-my_list.py
 >>> print(my_list)
 [3]
 >>>
->>> my_list = MyList()
->>> my_list.append(3)
->>> my_list.print_sorted()
-[3]
->>> print(my_list)
-[3]
-
+>>> my_list2 = MyList()
+>>> my_list2.append(4)
+>>> my_list2.append(4)
+>>> my_list2.append(4)
+>>> my_list2.append(4)
+>>> my_list2.print_sorted()
+[4, 4, 4, 4]
+>>>
