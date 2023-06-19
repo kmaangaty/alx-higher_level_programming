@@ -85,8 +85,8 @@ class Base:
                 ged = cls(1, 1)
             else:
                 ged = cls(1)
-
-            return ged.update(**dictionary)
+            ged.update(**dictionary)
+            return ged
 
     @classmethod
     def load_from_file(cls):
