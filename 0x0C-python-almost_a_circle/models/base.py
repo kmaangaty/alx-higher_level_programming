@@ -127,10 +127,13 @@ class Base:
 
     @classmethod
     def load_from_file_csv(cls):
-        """
-        class method (load_from_file_csv): load from csv file
+        """Return a list of classes instantiated from a CSV file.
+
+        Reads from `<cls.__name__>.csv`.
+
         Returns:
-            result of data in file
+            If the file does not exist - an empty list.
+            Otherwise - a list of instantiated classes.
         """
         fn = cls.__name__ + ".csv"
         try:
@@ -154,84 +157,35 @@ class Base:
             list_rectangles (list): A list of Rectangle objects to draw.
             list_squares (list): A list of Square objects to draw.
         """
-        canvas = turtle.Turtle()
-        Base.init_canvas(canvas)
+        turt = turtle.Turtle()
+        turt.screen.bgcolor("#b7312c")
+        turt.pensize(3)
+        turt.shape("turtle")
 
-        for reco in list_rectangles:
-            Base.morb(canvas, reco)
-            for d in range(2):
-                Base.rec_row(canvas, reco)
-            canvas.hideturtle()
+        turt.color("#ffffff")
+        for rect in list_rectangles:
+            turt.showturtle()
+            turt.up()
+            turt.goto(rect.x, rect.y)
+            turt.down()
+            for i in range(2):
+                turt.forward(rect.width)
+                turt.left(90)
+                turt.forward(rect.height)
+                turt.left(90)
+            turt.hideturtle()
 
-        canvas.color("#b5e3d8")
-        for morcor in list_squares:
-            Base.rdo(canvas, morcor)
-            for y in range(2):
-                Base.rdt(canvas, morcor)
-            canvas.hideturtle()
+        turt.color("#b5e3d8")
+        for sq in list_squares:
+            turt.showturtle()
+            turt.up()
+            turt.goto(sq.x, sq.y)
+            turt.down()
+            for i in range(2):
+                turt.forward(sq.width)
+                turt.left(90)
+                turt.forward(sq.height)
+                turt.left(90)
+            turt.hideturtle()
 
         turtle.exitonclick()
-
-    @staticmethod
-    def init_canvas(cvs):
-        """
-        staticmethod (load_from_file_csv): load from csv file
-        Args:
-            cvs (turtle): parameter of type turtle.
-        """
-        cvs.screen.bgcolor("#b7312c")
-        cvs.pensize(3)
-        cvs.shape("turtle")
-        cvs.color("#ffffff")
-
-    @staticmethod
-    def morb(cvs, reco):
-        """
-        staticmethod (load_from_file_csv): load from csv file
-        Args:
-            cvs (turtle): parameter of type turtle.
-            reco (ldt): parameter of type ldt.
-        """
-        cvs.showturtle()
-        cvs.up()
-        cvs.goto(reco.x, reco.y)
-        cvs.down()
-
-    @staticmethod
-    def rec_row(cvs, record):
-        """
-        staticmethod (load_from_file_csv): load from csv file
-        Args:
-            cvs (turtle): parameter of type turtle.
-            record (ldt): parameter of type ldt.
-        """
-        cvs.forward(record.width)
-        cvs.left(90)
-        cvs.forward(record.height)
-        cvs.left(90)
-
-    @staticmethod
-    def rdo(cvs, mordo):
-        """
-        staticmethod (load_from_file_csv): load from csv file
-        Args:
-            cvs (turtle): parameter of type turtle.
-            mordo (ldt): parameter of type ldt.
-        """
-        cvs.showturtle()
-        cvs.up()
-        cvs.goto(mordo.x, mordo.y)
-        cvs.down()
-
-    @staticmethod
-    def rdt(cvs, mordo):
-        """
-        staticmethod (load_from_file_csv): load from csv file
-        Args:
-            cvs (turtle): parameter of type turtle.
-            mordo (ldt): parameter of type ldt.
-        """
-        cvs.forward(mordo.width)
-        cvs.left(90)
-        cvs.forward(mordo.height)
-        cvs.left(90)
