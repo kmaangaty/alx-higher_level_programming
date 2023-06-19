@@ -8,7 +8,6 @@ import turtle
 class Base:
     """
     this is Base class.
-
     Private Class Attributes:
         __nb_object (int): Number of instantiated Bases.
     """
@@ -30,117 +29,120 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """
-       static method that converts dicts to json
+        static method (to_json_string): converts dicts to json
         Args:
             list_dictionaries (list): parameter of type list
         """
         if list_dictionaries is None or list_dictionaries == []:
-            return "[]"
-        return json.dumps(list_dictionaries)
+            quote = "[]"
+            return quote
+        result = json.dumps(list_dictionaries)
+        return result
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Write the JSON serialization of a list of objects to a file.
-
-        Args:
-            list_objs (list): A list of inherited Base instances.
         """
-        filename = cls.__name__ + ".json"
-        with open(filename, "w") as jsonfile:
+        class method (save_to_file):  write json to file
+        Args:
+            list_objs (list): parameter of type list
+        """
+        fn = cls.__name__ + ".json"
+        with open(fn, "w") as jf:
             if list_objs is None:
-                jsonfile.write("[]")
+                jf.write("[]")
             else:
-                list_dicts = [o.to_dictionary() for o in list_objs]
-                jsonfile.write(Base.to_json_string(list_dicts))
+                ld = [o.to_dictionary() for o in list_objs]
+                jf.write(Base.to_json_string(ld))
 
     @staticmethod
     def from_json_string(json_string):
-        """Return the deserialization of a JSON string.
-
+        """
+        static method (from_json_string): that returns the list of the JSON
+        string representation json_string
         Args:
-            json_string (str): A JSON str representation of a list of dicts.
+            json_string (str): parameter of type str.
         Returns:
-            If json_string is None or empty - an empty list.
-            Otherwise - the Python list represented by json_string.
+            json_string is a string representing a list of dictionaries
+            If json_string is None or empty, return an empty list
+            Otherwise, return the list represented by json_string
         """
         if json_string is None or json_string == "[]":
-            return []
-        return json.loads(json_string)
+            el = []
+            return el
+        result = json.loads(json_string)
+        return result
 
     @classmethod
     def create(cls, **dictionary):
-        """Return a class instantied from a dictionary of attributes.
-
+        """
+        class method (create): json formation method
         Args:
-            **dictionary (dict): Key/value pairs of attributes to initialize.
+            **dictionary (dict): parameter of type dict.
         """
         if dictionary and dictionary != {}:
             if cls.__name__ == "Rectangle":
-                new = cls(1, 1)
+                ged = cls(1, 1)
             else:
-                new = cls(1)
-            new.update(**dictionary)
-            return new
+                ged = cls(1)
+            return ged.update(**dictionary)
 
     @classmethod
     def load_from_file(cls):
-        """Return a list of classes instantiated from a file of JSON strings.
-
-        Reads from `<cls.__name__>.json`.
-
-        Returns:
-            If the file does not exist - an empty list.
-            Otherwise - a list of instantiated classes.
         """
-        filename = str(cls.__name__) + ".json"
+        class method (load_from_file): json formation method
+        Returns:
+             returns a list of instances.
+        """
+        fn = str(cls.__name__) + ".json"
         try:
-            with open(filename, "r") as jsonfile:
-                list_dicts = Base.from_json_string(jsonfile.read())
-                return [cls.create(**d) for d in list_dicts]
+            with open(fn, "r") as jf:
+                ld = Base.from_json_string(jf.read())
+                result = [cls.create(**d) for d in ld]
+                return result
         except IOError:
-            return []
+            el = []
+            return el
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Write the CSV serialization of a list of objects to a file.
-
-        Args:
-            list_objs (list): A list of inherited Base instances.
         """
-        filename = cls.__name__ + ".csv"
-        with open(filename, "w", newline="") as csvfile:
+        class method (save_to_file_csv): serializes and deserializes.
+        Args:
+            list_objs (list): parameter of type list.
+        """
+        fn = cls.__name__ + ".csv"
+        with open(fn, "w", newline="") as csf:
             if list_objs is None or list_objs == []:
-                csvfile.write("[]")
+                ikt = "[]"
+                csf.write(ikt)
             else:
                 if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
+                    fdn = ["id", "width", "height", "x", "y"]
                 else:
-                    fieldnames = ["id", "size", "x", "y"]
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                for obj in list_objs:
-                    writer.writerow(obj.to_dictionary())
+                    fdn = ["id", "size", "x", "y"]
+                ktb = csv.DictWriter(csf, fieldnames=fdn)
+                for it in list_objs:
+                    row = it.to_dictionary()
+                    ktb.writerow(row)
 
     @classmethod
     def load_from_file_csv(cls):
-        """Return a list of classes instantiated from a CSV file.
-
-        Reads from `<cls.__name__>.csv`.
-
-        Returns:
-            If the file does not exist - an empty list.
-            Otherwise - a list of instantiated classes.
         """
-        filename = cls.__name__ + ".csv"
+        class method (load_from_file_csv): load from csv file
+        Returns:
+            result of data in file
+        """
+        fn = cls.__name__ + ".csv"
         try:
-            with open(filename, "r", newline="") as csvfile:
+            with open(fn, "r", newline="") as csf:
                 if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
+                    fdn = ["id", "width", "height", "x", "y"]
                 else:
-                    fieldnames = ["id", "size", "x", "y"]
-                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
-                list_dicts = [dict([k, int(v)] for k, v in d.items())
-                              for d in list_dicts]
-                return [cls.create(**d) for d in list_dicts]
+                    fdn = ["id", "size", "x", "y"]
+                ld = csv.DictReader(csf, fieldnames=fdn)
+                ld = [dict([k, int(v)] for k, v in d.items())
+                      for d in ld]
+                return [cls.create(**d) for d in ld]
         except IOError:
             return []
 
@@ -152,35 +154,84 @@ class Base:
             list_rectangles (list): A list of Rectangle objects to draw.
             list_squares (list): A list of Square objects to draw.
         """
-        turt = turtle.Turtle()
-        turt.screen.bgcolor("#b7312c")
-        turt.pensize(3)
-        turt.shape("turtle")
+        canvas = turtle.Turtle()
+        Base.init_canvas(canvas)
 
-        turt.color("#ffffff")
-        for rect in list_rectangles:
-            turt.showturtle()
-            turt.up()
-            turt.goto(rect.x, rect.y)
-            turt.down()
-            for i in range(2):
-                turt.forward(rect.width)
-                turt.left(90)
-                turt.forward(rect.height)
-                turt.left(90)
-            turt.hideturtle()
+        for reco in list_rectangles:
+            Base.morb(canvas, reco)
+            for d in range(2):
+                Base.rec_row(canvas, reco)
+            canvas.hideturtle()
 
-        turt.color("#b5e3d8")
-        for sq in list_squares:
-            turt.showturtle()
-            turt.up()
-            turt.goto(sq.x, sq.y)
-            turt.down()
-            for i in range(2):
-                turt.forward(sq.width)
-                turt.left(90)
-                turt.forward(sq.height)
-                turt.left(90)
-            turt.hideturtle()
+        canvas.color("#b5e3d8")
+        for morcor in list_squares:
+            Base.rdo(canvas, morcor)
+            for y in range(2):
+                Base.rdt(canvas, morcor)
+            canvas.hideturtle()
 
         turtle.exitonclick()
+
+    @staticmethod
+    def init_canvas(cvs):
+        """
+        staticmethod (load_from_file_csv): load from csv file
+        Args:
+            cvs (turtle): parameter of type turtle.
+        """
+        cvs.screen.bgcolor("#b7312c")
+        cvs.pensize(3)
+        cvs.shape("turtle")
+        cvs.color("#ffffff")
+
+    @staticmethod
+    def morb(cvs, reco):
+        """
+        staticmethod (load_from_file_csv): load from csv file
+        Args:
+            cvs (turtle): parameter of type turtle.
+            reco (ldt): parameter of type ldt.
+        """
+        cvs.showturtle()
+        cvs.up()
+        cvs.goto(reco.x, reco.y)
+        cvs.down()
+
+    @staticmethod
+    def rec_row(cvs, record):
+        """
+        staticmethod (load_from_file_csv): load from csv file
+        Args:
+            cvs (turtle): parameter of type turtle.
+            record (ldt): parameter of type ldt.
+        """
+        cvs.forward(record.width)
+        cvs.left(90)
+        cvs.forward(record.height)
+        cvs.left(90)
+
+    @staticmethod
+    def rdo(cvs, mordo):
+        """
+        staticmethod (load_from_file_csv): load from csv file
+        Args:
+            cvs (turtle): parameter of type turtle.
+            mordo (ldt): parameter of type ldt.
+        """
+        cvs.showturtle()
+        cvs.up()
+        cvs.goto(mordo.x, mordo.y)
+        cvs.down()
+
+    @staticmethod
+    def rdt(cvs, mordo):
+        """
+        staticmethod (load_from_file_csv): load from csv file
+        Args:
+            cvs (turtle): parameter of type turtle.
+            mordo (ldt): parameter of type ldt.
+        """
+        cvs.forward(mordo.width)
+        cvs.left(90)
+        cvs.forward(mordo.height)
+        cvs.left(90)
