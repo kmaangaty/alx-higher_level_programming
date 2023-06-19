@@ -68,8 +68,10 @@ class Base:
             Otherwise - the Python list represented by json_string.
         """
         if json_string is None or json_string == "[]":
-            return []
-        return json.loads(json_string)
+            el = []
+            return el
+        result = json.loads(json_string)
+        return result
 
     @classmethod
     def create(cls, **dictionary):
