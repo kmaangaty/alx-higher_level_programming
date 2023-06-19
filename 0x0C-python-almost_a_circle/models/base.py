@@ -67,10 +67,8 @@ class Base:
             Otherwise, return the list represented by json_string
         """
         if json_string is None or json_string == "[]":
-            el = []
-            return el
-        result = json.loads(json_string)
-        return result
+            return []
+        return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
@@ -105,23 +103,25 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Write the CSV serialization of a list of objects to a file.
-
-        Args:
-            list_objs (list): A list of inherited Base instances.
         """
-        filename = cls.__name__ + ".csv"
-        with open(filename, "w", newline="") as csvfile:
+        class method (save_to_file_csv): serializes and deserializes.
+        Args:
+            list_objs (list): parameter of type list.
+        """
+        fn = cls.__name__ + ".csv"
+        with open(fn, "w", newline="") as csf:
             if list_objs is None or list_objs == []:
-                csvfile.write("[]")
+                ikt = "[]"
+                csf.write(ikt)
             else:
                 if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
+                    fdn = ["id", "width", "height", "x", "y"]
                 else:
-                    fieldnames = ["id", "size", "x", "y"]
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                for obj in list_objs:
-                    writer.writerow(obj.to_dictionary())
+                    fdn = ["id", "size", "x", "y"]
+                ktb = csv.DictWriter(csf, fieldnames=fdn)
+                for it in list_objs:
+                    row = it.to_dictionary()
+                    ktb.writerow(row)
 
     @classmethod
     def load_from_file_csv(cls):
