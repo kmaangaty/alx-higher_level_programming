@@ -105,24 +105,23 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """
-        class method (save_to_file_csv): serializes and deserializes.
+        """Write the CSV serialization of a list of objects to a file.
+
         Args:
-            list_objs (list): parameter of type list.
+            list_objs (list): A list of inherited Base instances.
         """
-        fn = cls.__name__ + ".csv"
-        with open(fn, "w", newline="") as csf:
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline="") as csvfile:
             if list_objs is None or list_objs == []:
-                ikt = "[]"
-                csf.write(ikt)
+                csvfile.write("[]")
             else:
                 if cls.__name__ == "Rectangle":
-                    fdn = ["id", "width", "height", "x", "y"]
+                    fieldnames = ["id", "width", "height", "x", "y"]
                 else:
-                    fdn = ["id", "size", "x", "y"]
-                ktb = csv.DictWriter(csf, fieldnames=fdn)
-                for it in list_objs:
-                    ktb.writerow(it.to_dictionary())
+                    fieldnames = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
