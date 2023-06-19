@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-"""Defines a rectangle class."""
+"""this is class Rectangle."""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle."""
+    """this is class Rectangle."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Initialize a new Rectangle.
+        """
+        init new instance of class Rectangle.
         Args:
             width (int): parameter of type int.
             height (int): parameter of type int.
@@ -74,13 +75,13 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
-        """ this method will return the value of area."""
+        """ this function will return the value of area."""
         w = self.width
         h = self.height
         return w * h
 
     def display(self):
-        """this method will draw a shape"""
+        """this function will draw a shape"""
         w = self.width
         h = self.height
         if w == 0 or h == 0:
@@ -95,7 +96,7 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """
-        this is method to update rectangle.
+        this is function to update rectangle.
         Args:
             *args (ints): parameter of type list.
             **kwargs (dict): parameter of type dict.
@@ -136,7 +137,7 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """
-        thi is dict formation method.
+        thi is dict formation function.
         """
         return {
             "id": self.id,
@@ -148,7 +149,7 @@ class Rectangle(Base):
 
     def __str__(self):
         """
-        this is stringify method.
+        this is stringify function.
         """
         return "[Rectangle] ({}) {}/{} - {}/{}" \
             .format(self.id,

@@ -90,7 +90,7 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
-        class method (load_from_file): json formation method
+        class method (load_from_file): json formation function
         Returns:
              returns a list of instances.
         """
