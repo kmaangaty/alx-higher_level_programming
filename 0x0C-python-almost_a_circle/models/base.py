@@ -85,6 +85,7 @@ class Base:
                 ged = cls(1, 1)
             else:
                 ged = cls(1)
+
             return ged.update(**dictionary)
 
     @classmethod
