@@ -122,8 +122,7 @@ class Base:
                     fdn = ["id", "size", "x", "y"]
                 ktb = csv.DictWriter(csf, fieldnames=fdn)
                 for it in list_objs:
-                    row = it.to_dictionary()
-                    ktb.writerow(row)
+                    ktb.writerow(it.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
